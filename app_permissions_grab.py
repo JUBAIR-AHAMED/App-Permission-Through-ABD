@@ -26,7 +26,7 @@ def list_installed_apps_with_permissions():
         with open('app_permissions_report.txt', 'w') as report_file:
             for app in app_list:
                 package_name = app.split('=')[1]
-                permissions = run_adb_command(f'pm dump {package_name} | grep permission')
+                permissions = run_adb_command(f'dumpsys package {package_name} | grep permission')
 
                 if permissions:
                     report_file.write(f"App: {package_name}\n")
